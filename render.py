@@ -61,7 +61,7 @@ def make_filter_lens():
 def make_env_lens():
     return (make_filter_lens() & lens.Iso(
         partial(
-            lambda k_src, k_dst, k_env, l_env, it: (k_src(it[1]), k_dst(it[1]), l_env(k_env(it[1]))),
+            lambda k_src, k_dst, k_env, l_env, it: (k_src(it[1]), l_env(k_dst(it[1])), l_env(k_env(it[1]))),
             *(lens[key].get() for key in ("src", "dst")),
             lens.Get("env", {}).get(),
             lens.Recur(str).modify(derefer_var)
