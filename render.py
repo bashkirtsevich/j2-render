@@ -108,7 +108,7 @@ if __name__ == '__main__':
             data = yaml.load(f, Loader=yaml.FullLoader)
 
         for src, dst, vars in renderer(data):
-            for f_in in match_files(source_path, src):
+            for f_in in match_files(source_path, "*" + src):
                 p_out = os.path.join(destination_path, dst)
                 mkdir(dirname(p_out))
 
